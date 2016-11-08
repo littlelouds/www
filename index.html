@@ -1,10 +1,42 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
-	this is git test.
-</body>
+<html>
+	<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Camera Example</title>
+    <script type="text/javascript">
+        if (window.DeviceOrientationEvent) {
+            //  支持DeviceOrientation API写在这里
+            alert("支持");
+        } else {
+            alert("对不起，您的浏览器还不支持Device Orientation!!!");
+        }
+        // 扩展API加载完毕后调用onPlusReady回调函数 
+        document.addEventListener( "plusready", onPlusReady, false );
+        // 扩展API加载完毕，现在可以正常调用扩展API 
+        function onPlusReady() {
+            alert("plusready");
+        }
+        //拍照
+        function captureImage(){
+            var cmr = plus.camera.getCamera();
+            var res = cmr.supportedImageResolutions[0];
+            var fmt = cmr.supportedImageFormats[0];
+            console.log("Resolution: "+res+", Format: "+fmt);
+            cmr.captureImage( function( path ){
+                    alert( "Capture image success: " + path );  
+                },
+                function( error ) {
+                    alert( "Capture image failed: " + error.message );
+                },
+                {resolution:res,format:fmt}
+            );
+        }
+	</script>
+	</head>
+	<body>
+		<button onclick="captureImage()">拍照</button>
+	</body>
 </html>
+	
