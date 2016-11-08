@@ -23,7 +23,7 @@
             var cmr = plus.camera.getCamera();
             var res = cmr.supportedImageResolutions[0];
             var fmt = cmr.supportedImageFormats[0];
-            console.log("Resolution: "+res+", Format: "+fmt);
+            alert("Resolution: "+res+", Format: "+fmt);
             cmr.captureImage( function( path ){
                     alert( "Capture image success: " + path );  
                 },
@@ -39,4 +39,3 @@
 		<button onclick="captureImage()">拍照</button>
 	</body>
 </html>
-	
